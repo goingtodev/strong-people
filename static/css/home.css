@@ -1,0 +1,25 @@
+.main-container {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.user-data-contanier {
+  width: 80%;
+  height: 80%;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  border-radius: 5px;
+}
+
+.board {
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(2px);
+  padding: 15px;
+  border-radius: 5px;
+  width: 100px;
+  height: 100px;
+  color: black;
+}

@@ -4,8 +4,82 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../static/css/index.css" />
     <title>Home</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+      const userData = [
+        {
+          boardId: 0,
+          todos: [
+            {
+              todoId: 0,
+              text: '운동1',
+              isDone: true,
+            },
+            {
+              todoId: 1,
+              text: '운동2',
+              isDone: false,
+            },
+            {
+              todoId: 2,
+              text: '운동3',
+              isDone: false,
+            },
+          ],
+        },
+
+        {
+          boardId: 1,
+          todos: [
+            {
+              todoId: 0,
+              text: '운1',
+              isDone: false,
+            },
+            {
+              todoId: 1,
+              text: '운2',
+              isDone: false,
+            },
+          ],
+        },
+      ];
+
+      $(document).ready(function () {
+        paintBoard();
+      });
+
+      const boardClickHandler = (id) => {
+        console.log('board : ', id);
+      };
+
+      const createComponent = (data) => {
+        const { boardId, todos } = data;
+        const { todoId, text, isDone } = todos[0];
+        console.log(todos[0]);
+
+        return `
+          <div class="board" onclick="boardClickHandler(${boardId})">
+            <div>${text}</div>
+            <div>${todoId}</div>
+            <div>${isDone}</div>
+          </div>
+        `;
+      };
+
+      const paintBoard = () => {
+        userData.forEach((v) => {
+          const component = createComponent(v);
+          $('.user-data-contanier').append(component);
+        });
+      };
+    </script>
   </head>
-  <body></body>
+  <body>
+    <div class="main-container">
+      <div class="user-data-contanier"></div>
+    </div>
+  </body>
 </html>
