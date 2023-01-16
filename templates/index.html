@@ -66,11 +66,11 @@
         }
 
         return `
-          <div class="board board-add" onclick="boardClickHandler(${boardId})">
-            <a href="detail/${boardId}">
+          <a href="detail/${boardId}">
+            <div class="board board-add" onclick="boardClickHandler(${boardId})">
               ${todoComponent}
-            </a>
-          </div>
+            </div>
+          </a>
         `;
       };
 
