@@ -4,8 +4,118 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../static/css/index.css" />
     <title>Home</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+      const userData = [
+        {
+          boardId: 0,
+          todos: [
+            {
+              todoId: 0,
+              text: '운동1',
+              isDone: true,
+            },
+            {
+              todoId: 1,
+              text: '운동2',
+              isDone: false,
+            },
+            {
+              todoId: 2,
+              text: '운동3',
+              isDone: false,
+            },
+          ],
+        },
+
+        {
+          boardId: 1,
+          todos: [
+            {
+              todoId: 0,
+              text: '운1',
+              isDone: false,
+            },
+            {
+              todoId: 1,
+              text: '운2',
+              isDone: false,
+            },
+          ],
+        },
+      ];
+
+      $(document).ready(function () {
+        paintBoard();
+      });
+
+      const boardClickHandler = (id) => {
+        console.log('board : ', id);
+      };
+
+      const createComponent = (data) => {
+        const { boardId, todos } = data;
+        const { todoId, text, isDone } = todos[0];
+        let todoComponent = '';
+
+        for (let i of todos) {
+          const { text, isDone } = i;
+          todoComponent += getTodosDone(text, isDone);
+        }
+
+        return `
+          <a href="detail/${boardId}">
+            <div class="board board-add" onclick="boardClickHandler(${boardId})">
+              ${todoComponent}
+            </div>
+          </a>
+        `;
+      };
+
+      const getTodosDone = (text, isDone) => {
+        return `
+          <div class="${isDone ? 'done' : ''}">
+            ${text}
+          </div>
+        `;
+      };
+
+      const paintBoard = () => {
+        userData.forEach((v) => {
+          const component = createComponent(v);
+          $('.user-data-contanier').append(component);
+        });
+      };
+
+      const addTodo = () => {
+        console.log('add');
+        //Ajax to '/detail'
+      };
+    </script>
   </head>
-  <body></body>
+  <body>
+    <div class="main-container">
+      <div class="user-data-contanier">
+        <div class="board add-board" onclick="addTodo()">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke-width="1.5"
+            stroke="currentColor"
+            class="w-6 h-6"
+            width="45"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M12 4.5v15m7.5-7.5h-15"
+            />
+          </svg>
+        </div>
+      </div>
+    </div>
+  </body>
 </html>
