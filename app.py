@@ -10,6 +10,7 @@ def home():
 # Home
 
 
+
 #Detail
 
 if __name__ == '__main__':

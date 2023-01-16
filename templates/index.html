@@ -58,13 +58,16 @@
       const createComponent = (data) => {
         const { boardId, todos } = data;
         const { todoId, text, isDone } = todos[0];
-        console.log(todos[0]);
+
+        for (let i of todos) {
+          const { text } = i;
+          $('.board-add').append(text);
+          console.log(text);
+        }
 
         return `
-          <div class="board" onclick="boardClickHandler(${boardId})">
-            <div>${text}</div>
-            <div>${todoId}</div>
-            <div>${isDone}</div>
+          <div class="board board-add" onclick="boardClickHandler(${boardId})">
+            
           </div>
         `;
       };
@@ -75,11 +78,34 @@
           $('.user-data-contanier').append(component);
         });
       };
+
+      const addTodo = () => {
+        console.log('add');
+        //Ajax to '/detail'
+      };
     </script>
   </head>
   <body>
     <div class="main-container">
-      <div class="user-data-contanier"></div>
+      <div class="user-data-contanier">
+        <div class="board add-board" onclick="addTodo()">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke-width="1.5"
+            stroke="currentColor"
+            class="w-6 h-6"
+            width="45"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M12 4.5v15m7.5-7.5h-15"
+            />
+          </svg>
+        </div>
+      </div>
     </div>
   </body>
 </html>
