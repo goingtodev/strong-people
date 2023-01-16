@@ -6,13 +6,9 @@ app = Flask(__name__)
 
 @app.route('/')
 def home():
-    return render_template('/join.html')
-# Join
-@app.route('/join', method=["POST"])
-def join_post():
     return render_template('/index.html')
-
 # Home
+
 
 #Detail
 
