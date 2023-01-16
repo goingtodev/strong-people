@@ -58,16 +58,26 @@
       const createComponent = (data) => {
         const { boardId, todos } = data;
         const { todoId, text, isDone } = todos[0];
+        let todoComponent = '';
 
         for (let i of todos) {
-          const { text } = i;
-          $('.board-add').append(text);
-          console.log(text);
+          const { text, isDone } = i;
+          todoComponent += getTodosDone(text, isDone);
         }
 
         return `
           <div class="board board-add" onclick="boardClickHandler(${boardId})">
-            
+            <a href="detail/${boardId}">
+              ${todoComponent}
+            </a>
+          </div>
+        `;
+      };
+
+      const getTodosDone = (text, isDone) => {
+        return `
+          <div class="${isDone ? 'done' : ''}">
+            ${text}
           </div>
         `;
       };
